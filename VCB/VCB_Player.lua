@@ -1,85 +1,249 @@
 -- Position of the Name Text --
-local function NameTextPosition(self, var1, var2)
-	if VCBcPlayer[var1] == "Top Left" then
-		var2:ClearAllPoints()
-		var2:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 2, 2)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1] == "Left" then
-		var2:ClearAllPoints()
-		var2:SetPoint("LEFT", self, "LEFT", 3, 3)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1] == "Bottom Left" then
-		var2:ClearAllPoints()
-		var2:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 2, 0)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1] == "Top" then
-		var2:ClearAllPoints()
-		var2:SetPoint("BOTTOM", self, "TOP", 0, 2)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1] == "Center" then
-		var2:ClearAllPoints()
-		var2:SetPoint("CENTER", self, "CENTER", 0, 3)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1] == "Bottom" then
-		var2:ClearAllPoints()
-		var2:SetPoint("TOP", self, "BOTTOM", 0, 0)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1] == "Top Right" then
-		var2:ClearAllPoints()
-		var2:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", -2, 2)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1] == "Right" then
-		var2:ClearAllPoints()
-		var2:SetPoint("RIGHT", self, "RIGHT", -3, 3)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1] == "Bottom Right" then
-		var2:ClearAllPoints()
-		var2:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", -2, 0)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1] == "Hide" then
-		if var2:IsShown() then var2:Hide() end
+function chkPlayerNamePosition()
+	if VCBcPlayer["NameText"] == "Top Left" then
+		function vcbPlayerNamePosition(self)
+			VCBnameText:ClearAllPoints()
+			VCBnameText:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 2, 2)
+			if not VCBnameText:IsShown() then VCBnameText:Show() end
+		end
+	elseif VCBcPlayer["NameText"] == "Left" then
+		function vcbPlayerNamePosition(self)
+			VCBnameText:ClearAllPoints()
+			VCBnameText:SetPoint("LEFT", self, "LEFT", 3, 3)
+			if not VCBnameText:IsShown() then VCBnameText:Show() end
+		end
+	elseif VCBcPlayer["NameText"] == "Bottom Left" then
+		function vcbPlayerNamePosition(self)
+			VCBnameText:ClearAllPoints()
+			VCBnameText:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 2, 0)
+			if not VCBnameText:IsShown() then VCBnameText:Show() end
+		end
+	elseif VCBcPlayer["NameText"] == "Top" then
+		function vcbPlayerNamePosition(self)
+			VCBnameText:ClearAllPoints()
+			VCBnameText:SetPoint("BOTTOM", self, "TOP", 0, 2)
+			if not VCBnameText:IsShown() then VCBnameText:Show() end
+		end
+	elseif VCBcPlayer["NameText"] == "Center" then
+		function vcbPlayerNamePosition(self)
+			VCBnameText:ClearAllPoints()
+			VCBnameText:SetPoint("CENTER", self, "CENTER", 0, 3)
+			if not VCBnameText:IsShown() then VCBnameText:Show() end
+		end
+	elseif VCBcPlayer["NameText"] == "Bottom" then
+		function vcbPlayerNamePosition(self)
+			VCBnameText:ClearAllPoints()
+			VCBnameText:SetPoint("TOP", self, "BOTTOM", 0, 0)
+			if not VCBnameText:IsShown() then VCBnameText:Show() end
+		end
+	elseif VCBcPlayer["NameText"] == "Top Right" then
+		function vcbPlayerNamePosition(self)
+			VCBnameText:ClearAllPoints()
+			VCBnameText:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", -2, 2)
+			if not VCBnameText:IsShown() then VCBnameText:Show() end
+		end
+	elseif VCBcPlayer["NameText"] == "Right" then
+		function vcbPlayerNamePosition(self)
+			VCBnameText:ClearAllPoints()
+			VCBnameText:SetPoint("RIGHT", self, "RIGHT", -3, 3)
+			if not VCBnameText:IsShown() then VCBnameText:Show() end
+		end
+	elseif VCBcPlayer["NameText"] == "Bottom Right" then
+		function vcbPlayerNamePosition(self)
+			VCBnameText:ClearAllPoints()
+			VCBnameText:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", -2, 0)
+			if not VCBnameText:IsShown() then VCBnameText:Show() end
+		end
+	elseif VCBcPlayer["NameText"] == "Hide" then
+		function vcbPlayerNamePosition(self)
+			if VCBnameText:IsShown() then VCBnameText:Hide() end
+		end
 	end
 end
--- Position of the Casting Texts --
-local function CastingTextPosition(self, var1, var2)
-	if VCBcPlayer[var1]["Position"] == "Top Left" then
-		var2:ClearAllPoints()
-		var2:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 2, 2)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1]["Position"] == "Left" then
-		var2:ClearAllPoints()
-		var2:SetPoint("LEFT", self, "LEFT", 3, 3)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1]["Position"] == "Bottom Left" then
-		var2:ClearAllPoints()
-		var2:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 2, 0)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1]["Position"] == "Top" then
-		var2:ClearAllPoints()
-		var2:SetPoint("BOTTOM", self, "TOP", 0, 2)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1]["Position"] == "Center" then
-		var2:ClearAllPoints()
-		var2:SetPoint("CENTER", self, "CENTER", 0, 3)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1]["Position"] == "Bottom" then
-		var2:ClearAllPoints()
-		var2:SetPoint("TOP", self, "BOTTOM", 0, 0)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1]["Position"] == "Top Right" then
-		var2:ClearAllPoints()
-		var2:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", -2, 2)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1]["Position"] == "Right" then
-		var2:ClearAllPoints()
-		var2:SetPoint("RIGHT", self, "RIGHT", -3, 3)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1]["Position"] == "Bottom Right" then
-		var2:ClearAllPoints()
-		var2:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", -2, 0)
-		if not var2:IsShown() then var2:Show() end
-	elseif VCBcPlayer[var1]["Position"] == "Hide" then
-		if var2:IsShown() then var2:Hide() end
+-- Current time position --
+function chkPlayerCurrentTimePosition()
+	if VCBcPlayer["CurrentTimeText"]["Position"] == "Top Left" then
+		function vcbPlayerCurrentTimePosition(self)
+			VCBcurrentTimeText:ClearAllPoints()
+			VCBcurrentTimeText:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 2, 2)
+			if not VCBcurrentTimeText:IsShown() then VCBcurrentTimeText:Show() end
+		end
+	elseif VCBcPlayer["CurrentTimeText"]["Position"] == "Left" then
+		function vcbPlayerCurrentTimePosition(self)
+			VCBcurrentTimeText:ClearAllPoints()
+			VCBcurrentTimeText:SetPoint("LEFT", self, "LEFT", 3, 3)
+			if not VCBcurrentTimeText:IsShown() then VCBcurrentTimeText:Show() end
+		end
+	elseif VCBcPlayer["CurrentTimeText"]["Position"] == "Bottom Left" then
+		function vcbPlayerCurrentTimePosition(self)
+			VCBcurrentTimeText:ClearAllPoints()
+			VCBcurrentTimeText:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 2, 0)
+			if not VCBcurrentTimeText:IsShown() then VCBcurrentTimeText:Show() end
+		end
+	elseif VCBcPlayer["CurrentTimeText"]["Position"] == "Top" then
+		function vcbPlayerCurrentTimePosition(self)
+			VCBcurrentTimeText:ClearAllPoints()
+			VCBcurrentTimeText:SetPoint("BOTTOM", self, "TOP", 0, 2)
+			if not VCBcurrentTimeText:IsShown() then VCBcurrentTimeText:Show() end
+		end
+	elseif VCBcPlayer["CurrentTimeText"]["Position"] == "Center" then
+		function vcbPlayerCurrentTimePosition(self)
+			VCBcurrentTimeText:ClearAllPoints()
+			VCBcurrentTimeText:SetPoint("CENTER", self, "CENTER", 0, 3)
+			if not VCBcurrentTimeText:IsShown() then VCBcurrentTimeText:Show() end
+		end
+	elseif VCBcPlayer["CurrentTimeText"]["Position"] == "Bottom" then
+		function vcbPlayerCurrentTimePosition(self)
+			VCBcurrentTimeText:ClearAllPoints()
+			VCBcurrentTimeText:SetPoint("TOP", self, "BOTTOM", 0, 0)
+			if not VCBcurrentTimeText:IsShown() then VCBcurrentTimeText:Show() end
+		end
+	elseif VCBcPlayer["CurrentTimeText"]["Position"] == "Top Right" then
+		function vcbPlayerCurrentTimePosition(self)
+			VCBcurrentTimeText:ClearAllPoints()
+			VCBcurrentTimeText:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", -2, 2)
+			if not VCBcurrentTimeText:IsShown() then VCBcurrentTimeText:Show() end
+		end
+	elseif VCBcPlayer["CurrentTimeText"]["Position"] == "Right" then
+		function vcbPlayerCurrentTimePosition(self)
+			VCBcurrentTimeText:ClearAllPoints()
+			VCBcurrentTimeText:SetPoint("RIGHT", self, "RIGHT", -3, 3)
+			if not VCBcurrentTimeText:IsShown() then VCBcurrentTimeText:Show() end
+		end
+	elseif VCBcPlayer["CurrentTimeText"]["Position"] == "Bottom Right" then
+		function vcbPlayerCurrentTimePosition(self)
+			VCBcurrentTimeText:ClearAllPoints()
+			VCBcurrentTimeText:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", -2, 0)
+			if not VCBcurrentTimeText:IsShown() then VCBcurrentTimeText:Show() end
+		end
+	elseif VCBcPlayer["CurrentTimeText"]["Position"] == "Hide" then
+		function vcbPlayerCurrentTimePosition(self)
+			if VCBcurrentTimeText:IsShown() then VCBcurrentTimeText:Hide() end
+		end
+	end
+end
+-- Both time position --
+function chkPlayerBothTimePosition()
+	if VCBcPlayer["BothTimeText"]["Position"] == "Top Left" then
+		function vcbPlayerBothTimePosition(self)
+			VCBbothTimeText:ClearAllPoints()
+			VCBbothTimeText:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 2, 2)
+			if not VCBbothTimeText:IsShown() then VCBbothTimeText:Show() end
+		end
+	elseif VCBcPlayer["BothTimeText"]["Position"] == "Left" then
+		function vcbPlayerBothTimePosition(self)
+			VCBbothTimeText:ClearAllPoints()
+			VCBbothTimeText:SetPoint("LEFT", self, "LEFT", 3, 3)
+			if not VCBbothTimeText:IsShown() then VCBbothTimeText:Show() end
+		end
+	elseif VCBcPlayer["BothTimeText"]["Position"] == "Bottom Left" then
+		function vcbPlayerBothTimePosition(self)
+			VCBbothTimeText:ClearAllPoints()
+			VCBbothTimeText:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 2, 0)
+			if not VCBbothTimeText:IsShown() then VCBbothTimeText:Show() end
+		end
+	elseif VCBcPlayer["BothTimeText"]["Position"] == "Top" then
+		function vcbPlayerBothTimePosition(self)
+			VCBbothTimeText:ClearAllPoints()
+			VCBbothTimeText:SetPoint("BOTTOM", self, "TOP", 0, 2)
+			if not VCBbothTimeText:IsShown() then VCBbothTimeText:Show() end
+		end
+	elseif VCBcPlayer["BothTimeText"]["Position"] == "Center" then
+		function vcbPlayerBothTimePosition(self)
+			VCBbothTimeText:ClearAllPoints()
+			VCBbothTimeText:SetPoint("CENTER", self, "CENTER", 0, 3)
+			if not VCBbothTimeText:IsShown() then VCBbothTimeText:Show() end
+		end
+	elseif VCBcPlayer["BothTimeText"]["Position"] == "Bottom" then
+		function vcbPlayerBothTimePosition(self)
+			VCBbothTimeText:ClearAllPoints()
+			VCBbothTimeText:SetPoint("TOP", self, "BOTTOM", 0, 0)
+			if not VCBbothTimeText:IsShown() then VCBbothTimeText:Show() end
+		end
+	elseif VCBcPlayer["BothTimeText"]["Position"] == "Top Right" then
+		function vcbPlayerBothTimePosition(self)
+			VCBbothTimeText:ClearAllPoints()
+			VCBbothTimeText:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", -2, 2)
+			if not VCBbothTimeText:IsShown() then VCBbothTimeText:Show() end
+		end
+	elseif VCBcPlayer["BothTimeText"]["Position"] == "Right" then
+		function vcbPlayerBothTimePosition(self)
+			VCBbothTimeText:ClearAllPoints()
+			VCBbothTimeText:SetPoint("RIGHT", self, "RIGHT", -3, 3)
+			if not VCBbothTimeText:IsShown() then VCBbothTimeText:Show() end
+		end
+	elseif VCBcPlayer["BothTimeText"]["Position"] == "Bottom Right" then
+		function vcbPlayerBothTimePosition(self)
+			VCBbothTimeText:ClearAllPoints()
+			VCBbothTimeText:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", -2, 0)
+			if not VCBbothTimeText:IsShown() then VCBbothTimeText:Show() end
+		end
+	elseif VCBcPlayer["BothTimeText"]["Position"] == "Hide" then
+		function vcbPlayerBothTimePosition(self)
+			if VCBbothTimeText:IsShown() then VCBbothTimeText:Hide() end
+		end
+	end
+end
+-- Total Time position --
+function chkPlayerTotalTimePosition()
+	if VCBcPlayer["TotalTimeText"]["Position"] == "Top Left" then
+		function vcbPlayerTotalTimePosition(self)
+			VCBtotalTimeText:ClearAllPoints()
+			VCBtotalTimeText:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 2, 2)
+			if not VCBtotalTimeText:IsShown() then VCBtotalTimeText:Show() end
+		end
+	elseif VCBcPlayer["TotalTimeText"]["Position"] == "Left" then
+		function vcbPlayerTotalTimePosition(self)
+			VCBtotalTimeText:ClearAllPoints()
+			VCBtotalTimeText:SetPoint("LEFT", self, "LEFT", 3, 3)
+			if not VCBtotalTimeText:IsShown() then VCBtotalTimeText:Show() end
+		end
+	elseif VCBcPlayer["TotalTimeText"]["Position"] == "Bottom Left" then
+		function vcbPlayerTotalTimePosition(self)
+			VCBtotalTimeText:ClearAllPoints()
+			VCBtotalTimeText:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 2, 0)
+			if not VCBtotalTimeText:IsShown() then VCBtotalTimeText:Show() end
+		end
+	elseif VCBcPlayer["TotalTimeText"]["Position"] == "Top" then
+		function vcbPlayerTotalTimePosition(self)
+			VCBtotalTimeText:ClearAllPoints()
+			VCBtotalTimeText:SetPoint("BOTTOM", self, "TOP", 0, 2)
+			if not VCBtotalTimeText:IsShown() then VCBtotalTimeText:Show() end
+		end
+	elseif VCBcPlayer["TotalTimeText"]["Position"] == "Center" then
+		function vcbPlayerTotalTimePosition(self)
+			VCBtotalTimeText:ClearAllPoints()
+			VCBtotalTimeText:SetPoint("CENTER", self, "CENTER", 0, 3)
+			if not VCBtotalTimeText:IsShown() then VCBtotalTimeText:Show() end
+		end
+	elseif VCBcPlayer["TotalTimeText"]["Position"] == "Bottom" then
+		function vcbPlayerTotalTimePosition(self)
+			VCBtotalTimeText:ClearAllPoints()
+			VCBtotalTimeText:SetPoint("TOP", self, "BOTTOM", 0, 0)
+			if not VCBtotalTimeText:IsShown() then VCBtotalTimeText:Show() end
+		end
+	elseif VCBcPlayer["TotalTimeText"]["Position"] == "Top Right" then
+		function vcbPlayerTotalTimePosition(self)
+			VCBtotalTimeText:ClearAllPoints()
+			VCBtotalTimeText:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", -2, 2)
+			if not VCBtotalTimeText:IsShown() then VCBtotalTimeText:Show() end
+		end
+	elseif VCBcPlayer["TotalTimeText"]["Position"] == "Right" then
+		function vcbPlayerTotalTimePosition(self)
+			VCBtotalTimeText:ClearAllPoints()
+			VCBtotalTimeText:SetPoint("RIGHT", self, "RIGHT", -3, 3)
+			if not VCBtotalTimeText:IsShown() then VCBtotalTimeText:Show() end
+		end
+	elseif VCBcPlayer["TotalTimeText"]["Position"] == "Bottom Right" then
+		function vcbPlayerTotalTimePosition(self)
+			VCBtotalTimeText:ClearAllPoints()
+			VCBtotalTimeText:SetPoint("TOPRIGHT", self, "BOTTOMRIGHT", -2, 0)
+			if not VCBtotalTimeText:IsShown() then VCBtotalTimeText:Show() end
+		end
+	elseif VCBcPlayer["TotalTimeText"]["Position"] == "Hide" then
+		function vcbPlayerTotalTimePosition(self)
+			if VCBtotalTimeText:IsShown() then VCBtotalTimeText:Hide() end
+		end
 	end
 end
 -- Ascending, Descending and Sec --
@@ -148,36 +312,45 @@ local function AscendingDescendingSec(self)
 		end
 	end
 end
+-- Events Time --
+local function EventsTime(self, event, arg1, arg2, arg3)
+--	chkPlayerIconVisibility()
+	chkPlayerNamePosition()
+	chkPlayerCurrentTimePosition()
+	chkPlayerBothTimePosition()
+	chkPlayerTotalTimePosition()
 -- Hooking Time part 1 --
-CastingBarFrame:HookScript("OnShow", function(self)
-	if VCBcPlayer["Icon"] == "Left" then
-		if not self.Icon:IsShown() then self.Icon:Show() end
-		if VCBiconSpell:IsShown() then VCBiconSpell:Hide() end
-	elseif VCBcPlayer["Icon"] == "Right" then
-		if self.Icon:IsShown() then self.Icon:Hide() end
-		if not VCBiconSpell:IsShown() then VCBiconSpell:Show() end
-		VCBiconSpell:SetTexture(CastingBarFrame.Icon:GetTextureFileID())
-	elseif VCBcPlayer["Icon"] == "Left and Right" then
-		if not self.Icon:IsShown() then self.Icon:Show() end
-		if not VCBiconSpell:IsShown() then VCBiconSpell:Show() end
-		VCBiconSpell:SetTexture(CastingBarFrame.Icon:GetTextureFileID())
-	elseif VCBcPlayer["Icon"] == "Hide" then
-		if self.Icon:IsShown() then self.Icon:Hide() end
-		if VCBiconSpell:IsShown() then VCBiconSpell:Hide() end
-	end
-	NameTextPosition(self, "NameText", VCBnameText)
-	CastingTextPosition(self, "CurrentTimeText", VCBcurrentTimeText)
-	CastingTextPosition(self, "BothTimeText", VCBbothTimeText)
-	CastingTextPosition(self, "TotalTimeText", VCBtotalTimeText)
-end)
+	CastingBarFrame:HookScript("OnShow", function(self)
+		if VCBcPlayer["Icon"] == "Left" then
+			if not self.Icon:IsShown() then self.Icon:Show() end
+			if VCBiconSpell:IsShown() then VCBiconSpell:Hide() end
+		elseif VCBcPlayer["Icon"] == "Right" then
+			if self.Icon:IsShown() then self.Icon:Hide() end
+			if not VCBiconSpell:IsShown() then VCBiconSpell:Show() end
+			VCBiconSpell:SetTexture(CastingBarFrame.Icon:GetTextureFileID())
+		elseif VCBcPlayer["Icon"] == "Left and Right" then
+			if not self.Icon:IsShown() then self.Icon:Show() end
+			if not VCBiconSpell:IsShown() then VCBiconSpell:Show() end
+			VCBiconSpell:SetTexture(CastingBarFrame.Icon:GetTextureFileID())
+		elseif VCBcPlayer["Icon"] == "Hide" then
+			if self.Icon:IsShown() then self.Icon:Hide() end
+			if VCBiconSpell:IsShown() then VCBiconSpell:Hide() end
+		end
+		vcbPlayerNamePosition(self)
+		vcbPlayerCurrentTimePosition(self)
+		vcbPlayerBothTimePosition(self)
+		vcbPlayerTotalTimePosition(self)
+	end)
 -- Hooking Time part 2 --
-CastingBarFrame:HookScript("OnUpdate", function(self)
-	self.Text:SetAlpha(0)
-	AscendingDescendingSec(self)
-	if VCBcPlayer["TotalTimeText"]["Sec"] == "Show" then
-		VCBtotalTimeText:SetFormattedText("%.2f sec", self.maxValue)
-	elseif VCBcPlayer["TotalTimeText"]["Sec"] == "Hide" then
-		VCBtotalTimeText:SetFormattedText("%.2f", self.maxValue)
-	end
-	VCBnameText:SetText(self.Text:GetText())
-end)
+	CastingBarFrame:HookScript("OnUpdate", function(self)
+		self.Text:SetAlpha(0)
+		AscendingDescendingSec(self)
+		if VCBcPlayer["TotalTimeText"]["Sec"] == "Show" then
+			VCBtotalTimeText:SetFormattedText("%.2f sec", self.maxValue)
+		elseif VCBcPlayer["TotalTimeText"]["Sec"] == "Hide" then
+			VCBtotalTimeText:SetFormattedText("%.2f", self.maxValue)
+		end
+		VCBnameText:SetText(self.Text:GetText())
+	end)
+end
+vcbPlayer:SetScript("OnEvent", EventsTime)
