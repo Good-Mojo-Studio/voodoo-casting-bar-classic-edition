@@ -5,10 +5,29 @@ vcbNoMainColor = CreateColorFromHexString("00F0E68C")
 vcbNoHighColor = CreateColorFromHexString("009ACD32")
 -- function for showing the menu --
 function vcbShowMenu()
-	if not vcbOptions00:IsShown() then
-		vcbOptions00:Show()
+	if not InCombatLockdown() then
+		local _, loaded = C_AddOns.IsAddOnLoaded("VCB_Options")
+		local loadable, reason = C_AddOns.IsAddOnLoadable("VCB_Options" , nil , true)
+		if loadable and not loaded then
+			C_AddOns.LoadAddOn("VCB_Options")
+			if not vcbOptions00:IsShown() then
+				vcbOptions00:Show()
+			else
+				vcbOptions00:Hide()
+			end
+		elseif loadable and loaded then
+			if not vcbOptions00:IsShown() then
+				vcbOptions00:Show()
+			else
+				vcbOptions00:Hide()
+			end
+		else
+			local vcbTime = GameTime_GetTime(false)
+			DEFAULT_CHAT_FRAME:AddMessage(vcbTime.."[|cffF0E68C"..C_AddOns.GetAddOnMetadata("VCB", "Title").."|r] The addon with the name "..C_AddOns.GetAddOnMetadata("VCB_Options", "Title").." is "..reason.."!")
+			end
 	else
-		vcbOptions00:Hide()
+		local vcbTime = GameTime_GetTime(false)
+		DEFAULT_CHAT_FRAME:AddMessage(vcbTime.."[|cffF0E68C"..C_AddOns.GetAddOnMetadata("VCB", "Title").."|r] While you are in combat, you can't do this!")
 	end
 end
 -- Slash Command --
@@ -27,17 +46,4 @@ end
 -- on leave --
 function vcbLeavingMenus()
 	GameTooltip:Hide()
-end
--- click on Pop Out --
-function vcbClickPopOut(var1, var2)
-	var1:SetScript("OnClick", function(self, button, down)
-		if button == "LeftButton" and down == false then
-			if not var2:IsShown() then
-				var2:Show()
-				PlaySound(855, "Master")
-			else
-				var2:Hide()
-			end
-		end
-	end)
 end

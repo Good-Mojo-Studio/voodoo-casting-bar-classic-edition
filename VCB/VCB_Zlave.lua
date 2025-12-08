@@ -5,7 +5,10 @@ local function FirstTimeSavedVariables()
 	if VCBcNumber == nil then VCBcNumber = 0 end
 	if VCBcProfile == nil then VCBcProfile = {} end
 	if VCBcPlayer == nil then
-		VCBcPlayer = { NameText = "Center",
+		VCBcPlayer = { Unlock = false,
+			Position = {X = 0, Y = 115},
+			Scale = 100,
+			NameText = "Center",
 			CurrentTimeText = {Position = "Bottom Left", Direction = "Both", Sec = "Show"},
 			TotalTimeText = {Position = "Bottom Right", Sec = "Show"},
 			BothTimeText = {Position = "Hide", Direction = "Both", Sec = "Show"},
@@ -15,6 +18,12 @@ local function FirstTimeSavedVariables()
 			Art = "Default",
 		}
 	end
+	if VCBcPlayer["Unlock"] == nil then VCBcPlayer["Unlock"] = false end
+	if VCBcPlayer["Position"] == nil then VCBcPlayer["Position"] = {X = 908, Y = 115} end
+	if VCBcPlayer["Scale"] == nil then VCBcPlayer["Scale"] = 100 end
+	if VCBcPlayer["CurrentTimeText"]["Decimals"] == nil then VCBcPlayer["CurrentTimeText"]["Decimals"] = 2 end
+	if VCBcPlayer["TotalTimeText"]["Decimals"] == nil then VCBcPlayer["TotalTimeText"]["Decimals"] = 2 end
+	if VCBcPlayer["BothTimeText"]["Decimals"] == nil then VCBcPlayer["BothTimeText"]["Decimals"] = 2 end
 end
 -- Some local variables --
 local lagStart = 0

@@ -246,71 +246,351 @@ function chkPlayerTotalTimePosition()
 		end
 	end
 end
--- Ascending, Descending and Sec --
-local function AscendingDescendingSec(self)
-	if self.casting then
+-- Current time update --
+function chkPlayerCurrentTimeUpdate()
+	if VCBcPlayer["CurrentTimeText"]["Decimals"] == 2 then
 		if VCBcPlayer["CurrentTimeText"]["Sec"] == "Show" then
-			if VCBcPlayer["CurrentTimeText"]["Direction"] == "Ascending" or VCBcPlayer["CurrentTimeText"]["Direction"] == "Both" then
-				VCBcurrentTimeText:SetFormattedText("%.2f sec", self.value)
+			if VCBcPlayer["CurrentTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						VCBcurrentTimeText:SetFormattedText("%.2f sec", self.value)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.2f sec", VCBdescending)
+					end
+				end
 			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Descending" then
-				local VCBdescending = self.maxValue - self.value
-				VCBcurrentTimeText:SetFormattedText("%.2f sec", VCBdescending)
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.2f sec", VCBdescending)
+					elseif self.channeling then
+						VCBcurrentTimeText:SetFormattedText("%.2f sec", self.value)
+					end
+				end
+			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Both" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					VCBcurrentTimeText:SetFormattedText("%.2f sec", self.value)
+				end
 			end
 		elseif VCBcPlayer["CurrentTimeText"]["Sec"] == "Hide" then
-			if VCBcPlayer["CurrentTimeText"]["Direction"] == "Ascending" or VCBcPlayer["CurrentTimeText"]["Direction"] == "Both" then
-				VCBcurrentTimeText:SetFormattedText("%.2f", self.value)
+			if VCBcPlayer["CurrentTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						VCBcurrentTimeText:SetFormattedText("%.2f", self.value)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.2f", VCBdescending)
+					end
+				end
 			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Descending" then
-				local VCBdescending = self.maxValue - self.value
-				VCBcurrentTimeText:SetFormattedText("%.2f", VCBdescending)
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.2f", VCBdescending)
+					elseif self.channeling then
+						VCBcurrentTimeText:SetFormattedText("%.2f", self.value)
+					end
+				end
+			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Both" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					VCBcurrentTimeText:SetFormattedText("%.2f", self.value)
+				end
 			end
 		end
-		if VCBcPlayer["BothTimeText"]["Sec"] == "Show" then
-			if VCBcPlayer["BothTimeText"]["Direction"] == "Ascending" or VCBcPlayer["BothTimeText"]["Direction"] == "Both" then
-				VCBbothTimeText:SetFormattedText("%.2f/%.2f sec", self.value, self.maxValue)
-			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Descending" then
-				local VCBdescending = self.maxValue - self.value
-				VCBbothTimeText:SetFormattedText("%.2f/%.2f sec", VCBdescending, self.maxValue)
-			end
-		elseif VCBcPlayer["BothTimeText"]["Sec"] == "Hide" then
-			if VCBcPlayer["BothTimeText"]["Direction"] == "Ascending" or VCBcPlayer["BothTimeText"]["Direction"] == "Both" then
-				VCBbothTimeText:SetFormattedText("%.2f/%.2f", self.value, self.maxValue)
-			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Descending" then
-				local VCBdescending = self.maxValue - self.value
-				VCBbothTimeText:SetFormattedText("%.2f/%.2f", VCBdescending, self.maxValue)
-			end
-		end
-	elseif self.channeling then
+	elseif VCBcPlayer["CurrentTimeText"]["Decimals"] == 1 then
 		if VCBcPlayer["CurrentTimeText"]["Sec"] == "Show" then
-			if VCBcPlayer["CurrentTimeText"]["Direction"] == "Descending" or VCBcPlayer["CurrentTimeText"]["Direction"] == "Both" then
-				VCBcurrentTimeText:SetFormattedText("%.2f sec", self.value)
-			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Ascending" then
-				local VCBdescending = self.maxValue - self.value
-				VCBcurrentTimeText:SetFormattedText("%.2f sec", VCBdescending)
+			if VCBcPlayer["CurrentTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						VCBcurrentTimeText:SetFormattedText("%.1f sec", self.value)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.1f sec", VCBdescending)
+					end
+				end
+			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Descending" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.1f sec", VCBdescending)
+					elseif self.channeling then
+						VCBcurrentTimeText:SetFormattedText("%.1f sec", self.value)
+					end
+				end
+			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Both" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					VCBcurrentTimeText:SetFormattedText("%.1f sec", self.value)
+				end
 			end
 		elseif VCBcPlayer["CurrentTimeText"]["Sec"] == "Hide" then
-			if VCBcPlayer["CurrentTimeText"]["Direction"] == "Descending" or VCBcPlayer["CurrentTimeText"]["Direction"] == "Both" then
-				VCBcurrentTimeText:SetFormattedText("%.2f", self.value)
-			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Ascending" then
-				local VCBdescending = self.maxValue - self.value
-				VCBcurrentTimeText:SetFormattedText("%.2f", VCBdescending)
+			if VCBcPlayer["CurrentTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						VCBcurrentTimeText:SetFormattedText("%.1f", self.value)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.1f", VCBdescending)
+					end
+				end
+			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Descending" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.1f", VCBdescending)
+					elseif self.channeling then
+						VCBcurrentTimeText:SetFormattedText("%.1f", self.value)
+					end
+				end
+			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Both" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					VCBcurrentTimeText:SetFormattedText("%.1f", self.value)
+				end
 			end
 		end
-		if VCBcPlayer["BothTimeText"]["Sec"] == "Show" then
-			if VCBcPlayer["BothTimeText"]["Direction"] == "Descending" or VCBcPlayer["BothTimeText"]["Direction"] == "Both" then
-				VCBbothTimeText:SetFormattedText("%.2f/%.2f sec", self.value, self.maxValue)
-			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Ascending" then
-				local VCBdescending = self.maxValue - self.value
-				VCBbothTimeText:SetFormattedText("%.2f/%.2f sec", VCBdescending, self.maxValue)
+	elseif VCBcPlayer["CurrentTimeText"]["Decimals"] == 0 then
+		if VCBcPlayer["CurrentTimeText"]["Sec"] == "Show" then
+			if VCBcPlayer["CurrentTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						VCBcurrentTimeText:SetFormattedText("%.0f sec", self.value)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.0f sec", VCBdescending)
+					end
+				end
+			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Descending" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.0f sec", VCBdescending)
+					elseif self.channeling then
+						VCBcurrentTimeText:SetFormattedText("%.0f sec", self.value)
+					end
+				end
+			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Both" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					VCBcurrentTimeText:SetFormattedText("%.0f sec", self.value)
+				end
 			end
-		elseif VCBcPlayer["BothTimeText"]["Sec"] == "Hide" then
-			if VCBcPlayer["BothTimeText"]["Direction"] == "Descending" or VCBcPlayer["BothTimeText"]["Direction"] == "Both" then
-				VCBbothTimeText:SetFormattedText("%.2f/%.2f", self.value, self.maxValue)
-			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Ascending" then
-				local VCBdescending = self.maxValue - self.value
-				VCBbothTimeText:SetFormattedText("%.2f/%.2f", VCBdescending, self.maxValue)
+		elseif VCBcPlayer["CurrentTimeText"]["Sec"] == "Hide" then
+			if VCBcPlayer["CurrentTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						VCBcurrentTimeText:SetFormattedText("%.0f", self.value)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.0f", VCBdescending)
+					end
+				end
+			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Descending" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBcurrentTimeText:SetFormattedText("%.0f", VCBdescending)
+					elseif self.channeling then
+						VCBcurrentTimeText:SetFormattedText("%.0f", self.value)
+					end
+				end
+			elseif VCBcPlayer["CurrentTimeText"]["Direction"] == "Both" then
+				function vcbPlayerCurrentTimeUpdate(self)
+					VCBcurrentTimeText:SetFormattedText("%.0f", self.value)
+				end
 			end
 		end
 	end
+end
+-- Both time update --
+function chkPlayerBothTimeUpdate()
+	if VCBcPlayer["BothTimeText"]["Decimals"] == 2 then
+		if VCBcPlayer["BothTimeText"]["Sec"] == "Show" then
+			if VCBcPlayer["BothTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						VCBbothTimeText:SetFormattedText("%.2f/%.2f sec", self.value, self.maxValue)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.2f/%.2f sec", VCBdescending, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Descending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.2f/%.2f sec", VCBdescending, self.maxValue)
+					elseif self.channeling then
+						VCBbothTimeText:SetFormattedText("%.2f/%.2f sec", self.value, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Both" then
+				function vcbPlayerBothTimeUpdate(self)
+					VCBbothTimeText:SetFormattedText("%.2f/%.2f sec", self.value, self.maxValue)
+				end
+			end
+		elseif VCBcPlayer["BothTimeText"]["Sec"] == "Hide" then
+			if VCBcPlayer["BothTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						VCBbothTimeText:SetFormattedText("%.2f/%.2f", self.value, self.maxValue)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.2f/%.2f", VCBdescending, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Descending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.2f/%.2f", VCBdescending, self.maxValue)
+					elseif self.channeling then
+						VCBbothTimeText:SetFormattedText("%.2f/%.2f", self.value, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Both" then
+				function vcbPlayerBothTimeUpdate(self)
+					VCBbothTimeText:SetFormattedText("%.2f/%.2f", self.value, self.maxValue)
+				end
+			end
+		end
+	elseif VCBcPlayer["BothTimeText"]["Decimals"] == 1 then
+		if VCBcPlayer["BothTimeText"]["Sec"] == "Show" then
+			if VCBcPlayer["BothTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						VCBbothTimeText:SetFormattedText("%.1f/%.1f sec", self.value, self.maxValue)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.1f/%.1f sec", VCBdescending, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Descending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.1f/%.1f sec", VCBdescending, self.maxValue)
+					elseif self.channeling then
+						VCBbothTimeText:SetFormattedText("%.1f/%.1f sec", self.value, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Both" then
+				function vcbPlayerBothTimeUpdate(self)
+					VCBbothTimeText:SetFormattedText("%.1f/%.1f sec", self.value, self.maxValue)
+				end
+			end
+		elseif VCBcPlayer["BothTimeText"]["Sec"] == "Hide" then
+			if VCBcPlayer["BothTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						VCBbothTimeText:SetFormattedText("%.1f/%.1f", self.value, self.maxValue)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.1f/%.1f", VCBdescending, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Descending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.1f/%.1f", VCBdescending, self.maxValue)
+					elseif self.channeling then
+						VCBbothTimeText:SetFormattedText("%.1f/%.1f", self.value, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Both" then
+				function vcbPlayerBothTimeUpdate(self)
+					VCBbothTimeText:SetFormattedText("%.1f/%.1f", self.value, self.maxValue)
+				end
+			end
+		end
+	elseif VCBcPlayer["BothTimeText"]["Decimals"] == 0 then
+		if VCBcPlayer["BothTimeText"]["Sec"] == "Show" then
+			if VCBcPlayer["BothTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						VCBbothTimeText:SetFormattedText("%.0f/%.0f sec", self.value, self.maxValue)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.0f/%.0f sec", VCBdescending, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Descending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.0f/%.0f sec", VCBdescending, self.maxValue)
+					elseif self.channeling then
+						VCBbothTimeText:SetFormattedText("%.0f/%.0f sec", self.value, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Both" then
+				function vcbPlayerBothTimeUpdate(self)
+					VCBbothTimeText:SetFormattedText("%.0f/%.0f sec", self.value, self.maxValue)
+				end
+			end
+		elseif VCBcPlayer["BothTimeText"]["Sec"] == "Hide" then
+			if VCBcPlayer["BothTimeText"]["Direction"] == "Ascending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						VCBbothTimeText:SetFormattedText("%.0f/%.0f", self.value, self.maxValue)
+					elseif self.channeling then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.0f/%.0f", VCBdescending, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Descending" then
+				function vcbPlayerBothTimeUpdate(self)
+					if self.casting then
+						local VCBdescending = self.maxValue - self.value
+						VCBbothTimeText:SetFormattedText("%.0f/%.0f", VCBdescending, self.maxValue)
+					elseif self.channeling then
+						VCBbothTimeText:SetFormattedText("%.0f/%.0f", self.value, self.maxValue)
+					end
+				end
+			elseif VCBcPlayer["BothTimeText"]["Direction"] == "Both" then
+				function vcbPlayerBothTimeUpdate(self)
+					VCBbothTimeText:SetFormattedText("%.0f/%.0f", self.value, self.maxValue)
+				end
+			end
+		end
+	end
+end
+-- Total time update --
+function chkPlayerTotalTimeUpdate()
+	if VCBcPlayer["TotalTimeText"]["Sec"] == "Show" then
+		if VCBcPlayer["TotalTimeText"]["Decimals"] == 2 then
+			function vcbPlayerTotalTimeUpdate(self)
+				VCBtotalTimeText:SetFormattedText("%.2f sec", self.maxValue)
+			end
+		elseif VCBcPlayer["TotalTimeText"]["Decimals"] == 1 then
+			function vcbPlayerTotalTimeUpdate(self)
+				VCBtotalTimeText:SetFormattedText("%.1f sec", self.maxValue)
+			end
+		elseif VCBcPlayer["TotalTimeText"]["Decimals"] == 0 then
+			function vcbPlayerTotalTimeUpdate(self)
+				VCBtotalTimeText:SetFormattedText("%.0f sec", self.maxValue)
+			end
+		end
+	elseif VCBcPlayer["TotalTimeText"]["Sec"] == "Hide" then
+		if VCBcPlayer["TotalTimeText"]["Decimals"] == 2 then
+			function vcbPlayerTotalTimeUpdate(self)
+				VCBtotalTimeText:SetFormattedText("%.2f", self.maxValue)
+			end
+		elseif VCBcPlayer["TotalTimeText"]["Decimals"] == 1 then
+			function vcbPlayerTotalTimeUpdate(self)
+				VCBtotalTimeText:SetFormattedText("%.1f", self.maxValue)
+			end
+		elseif VCBcPlayer["TotalTimeText"]["Decimals"] == 0 then
+			function vcbPlayerTotalTimeUpdate(self)
+				VCBtotalTimeText:SetFormattedText("%.0f", self.maxValue)
+			end
+		end
+	end
+end
+-- Position of  the bar --
+function vcbPlayerCastbarPosition(self)
+	self:SetScale(VCBcPlayer["Scale"]/100)
+	self:ClearAllPoints()
+	self:SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", VCBcPlayer["Position"]["X"], VCBcPlayer["Position"]["Y"])
 end
 -- Events Time --
 local function EventsTime(self, event, arg1, arg2, arg3)
@@ -319,6 +599,9 @@ local function EventsTime(self, event, arg1, arg2, arg3)
 	chkPlayerCurrentTimePosition()
 	chkPlayerBothTimePosition()
 	chkPlayerTotalTimePosition()
+	chkPlayerCurrentTimeUpdate()
+	chkPlayerBothTimeUpdate()
+	chkPlayerTotalTimeUpdate()
 -- Hooking Time part 1 --
 	CastingBarFrame:HookScript("OnShow", function(self)
 		if VCBcPlayer["Icon"] == "Left" then
@@ -342,15 +625,23 @@ local function EventsTime(self, event, arg1, arg2, arg3)
 		vcbPlayerTotalTimePosition(self)
 	end)
 -- Hooking Time part 2 --
-	CastingBarFrame:HookScript("OnUpdate", function(self)
-		self.Text:SetAlpha(0)
-		AscendingDescendingSec(self)
-		if VCBcPlayer["TotalTimeText"]["Sec"] == "Show" then
-			VCBtotalTimeText:SetFormattedText("%.2f sec", self.maxValue)
-		elseif VCBcPlayer["TotalTimeText"]["Sec"] == "Hide" then
-			VCBtotalTimeText:SetFormattedText("%.2f", self.maxValue)
-		end
-		VCBnameText:SetText(self.Text:GetText())
-	end)
+	if VCBcPlayer["Unlock"] then
+		CastingBarFrame:HookScript("OnUpdate", function(self)
+			self.Text:SetAlpha(0)
+			VCBnameText:SetText(self.Text:GetText())
+			vcbPlayerCastbarPosition(self)
+			vcbPlayerCurrentTimeUpdate(self)
+			vcbPlayerBothTimeUpdate(self)
+			vcbPlayerTotalTimeUpdate(self)
+		end)
+	else
+		CastingBarFrame:HookScript("OnUpdate", function(self)
+			self.Text:SetAlpha(0)
+			VCBnameText:SetText(self.Text:GetText())
+			vcbPlayerCurrentTimeUpdate(self)
+			vcbPlayerBothTimeUpdate(self)
+			vcbPlayerTotalTimeUpdate(self)
+		end)
+	end
 end
-vcbPlayer:SetScript("OnEvent", EventsTime)
+vcbZlave:HookScript("OnEvent", EventsTime)
