@@ -4,7 +4,7 @@
 ## DefaultState: enabled
 ## Dependencies: VCB
 ## LoadOnDemand: 1
-## Version: 1.08
+## Version: 1.09
 ## Author: The_Indolent
 ## X-Website: https://panosanastasiou.rocks/
 
@@ -12,3 +12,4 @@ VCB_Virtuals.xml
 VCB_Options_0.xml
 VCB_Options_1.xml
 VCB_Options_4.xml
+
